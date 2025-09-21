@@ -45,8 +45,8 @@ export default function RootLayout({
             </div>
 
             <div className="flex-1 flex flex-col overflow-hidden">
-              <header className="sticky top-0 z-30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
-                <div className="container mx-auto px-4 h-14 flex items-center justify-between">
+              <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b lg:static lg:z-auto">
+                <div className="container mx-auto px-4 h-14 flex items-center justify-between lg:pl-0">
                   <div className="lg:hidden">
                     <h1 className="text-xl font-bold">Quran Reader</h1>
                   </div>
@@ -65,7 +65,7 @@ export default function RootLayout({
                 </div>
               </header>
               
-              <main className="flex-1 overflow-auto">{children}</main>
+              <main className="flex-1 overflow-auto pt-14 lg:pt-0">{children}</main>
             </div>
 
             <div className="lg:hidden">
