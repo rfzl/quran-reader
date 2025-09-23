@@ -152,7 +152,7 @@ export default function SurahDetail({ surah, ayat }: SurahDetailProps) {
     if (targetVerse) {
       setJumpToVerse(verseNumber)
       markAsRead(verse)
-
+      
       const url = new URL(window.location.href)
       url.searchParams.set('verse', verse.toString())
       window.history.replaceState({}, '', url.toString())
@@ -221,12 +221,30 @@ export default function SurahDetail({ surah, ayat }: SurahDetailProps) {
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1)
+      setTimeout(() => {
+        const firstVerseInPage = filteredAyat[(currentPage) * versesPerPage]
+        if (firstVerseInPage && verseRefs.current[firstVerseInPage.nomorAyat]) {
+          verseRefs.current[firstVerseInPage.nomorAyat]?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          })
+        }
+      }, 100)
     }
   }
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1)
+      setTimeout(() => {
+        const firstVerseInPage = filteredAyat[(currentPage - 2) * versesPerPage]
+        if (firstVerseInPage && verseRefs.current[firstVerseInPage.nomorAyat]) {
+          verseRefs.current[firstVerseInPage.nomorAyat]?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          })
+        }
+      }, 100)
     }
   }
 
